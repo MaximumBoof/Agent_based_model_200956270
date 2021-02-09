@@ -7,6 +7,7 @@ Created on Tue Feb  2 16:35:15 2021
 
 import random
 import operator 
+import matplotlib.pyplot
 
 #This creates an empty list
 agents = []
@@ -82,3 +83,9 @@ dx = agents[0][1]-agents[1][1]
 distance = ((dy**2)+(dx**2))**0.5
 
 print (distance)
+
+matplotlib.pyplot.ylim(0, 99)
+matplotlib.pyplot.xlim(0, 99)
+matplotlib.pyplot.scatter(agents[0][1],agents[0][0])
+matplotlib.pyplot.scatter(agents[1][1],agents[1][0])
+matplotlib.pyplot.show()
