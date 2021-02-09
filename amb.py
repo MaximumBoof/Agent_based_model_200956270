@@ -1,8 +1,15 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Feb  2 16:35:15 2021
+
+@author: Stephen
+"""
+
 import random
 
 # Set up variables (in this case coordinates) for a first object or point 
-y0 = 50
-x0 = 50
+y0 = random.random() * 100
+x0 = random.random() * 100 
 
 # Random walk step one
 # For object 1 coordinates
@@ -28,9 +35,9 @@ if random.random() < 0.5:
 else:
     x0 -= 1
     
-# Set up variables for a new object or point
-x1 = 50
-y1 = 50
+# Set up variables (coordinates in this case) for a new object or point
+x1 = random.random() * 100
+y1 = random.random() * 100
 
 # Random walk step one
 # For object 2 coordinates
