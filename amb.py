@@ -9,64 +9,37 @@ import random
 import operator 
 import matplotlib.pyplot
 
+num_of_agents = 10
+
 #This creates an empty list
 agents = []
 
-# Add the first set of coordinates to the list but because of the extra square brackets, this is adding a list in a list
-# We have a two dimensional dataset, in which the first dimension agents[0] represents each agent, and the second dimension is the two coordinates, so agents[0][0] is the y coordinate and agents[0][1] is the x coordinate. As we only have one set of coordinates so far, if you print(agents) you should see something like this (though the numbers will be different):
-agents.append([random.randint(0,99),random.randint(0,99)])
+# created a list with num_of_agents agent coordinates
+for i in range(num_of_agents):
+    agents.append([random.randint(0,100),random.randint(0,100)])
 
 # Random walk step one
-# For object 1 coordinates
 if random.randint(0,99) < 50:
-    agents[0][0] += 1
+    agents[i][0] += 1
 else:
-    agents[0][0] -= 1
+    agents[i][0] -= 1
     
 if random.randint(0,99) < 50:
-    agents[0][1] += 1
+    agents[i][1] += 1
 else:
-    agents[0][1] -= 1
+    agents[i][1] -= 1
 
 # Random walk step two
-# For object 1 coordinates
 if random.randint(0,99) < 50:
-    agents[0][0] += 1
+    agents[i][0] += 1
 else:
-    agents[0][0] -= 1
+    agents[i][0] -= 1
     
 if random.randint(0,99) < 50:
-    agents[0][1] += 1
+    agents[i][1] += 1
 else:
-    agents[0][1] -= 1
-    
-# Added another set of coordates for the second age
-agents.append([random.randint(0,99),random.randint(0,99)])
-
-# Random walk step one
-# For object 2 coordinates
-if random.randint(0,99) < 50:
-    agents[1][0] += 1
-else:
-    agents[1][0] -= 1
-    
-if random.randint(0,99) < 50:
-    agents[1][1] += 1
-else:
-    agents[1][1] -= 1
-
-# Random walk step two 
-# For object 2 coordinates
-if random.randint(0,99) < 50:
-    agents[1][0] += 1
-else:
-    agents[1][0] -= 1
-    
-if random.randint(0,99) < 50:
-    agents[1][1] += 1
-else:
-    agents[1][1] -= 1
-    
+    agents[i][1] -= 1
+ 
 print (agents)
 
 # This max function will give the coordinates with the largest y value
@@ -84,8 +57,15 @@ distance = ((dy**2)+(dx**2))**0.5
 
 print (distance)
 
-matplotlib.pyplot.ylim(0, 99)
-matplotlib.pyplot.xlim(0, 99)
+# Using matplot to create a plot
+
+matplotlib.pyplot.ylim(0, 100)
+matplotlib.pyplot.xlim(0, 100)
 matplotlib.pyplot.scatter(agents[0][1],agents[0][0])
 matplotlib.pyplot.scatter(agents[1][1],agents[1][0])
+
+# Making the most easterly point red
+
+m = max(agents, key=operator.itemgetter(1))
+matplotlib.pyplot.scatter(m[1],m[0], color='red')
 matplotlib.pyplot.show()
