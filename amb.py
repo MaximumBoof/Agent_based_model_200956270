@@ -15,12 +15,23 @@ number_of_iterations = 100
 #This creates an empty list
 agents = []
 
-# created a list with num_of_agents agent coordinates
-# then I've nested a loop which tells it to do 100 iterations
+# Make the agents
 for i in range(num_of_agents):
-    for j in range(number_of_iterations):
         agents.append([random.randint(0,100),random.randint(0,100)])
- 
+
+# Move the agents
+for j in range(number_of_iterations):
+    for i in range(num_of_agents):
+        if random.random() < 0.5:
+            agents[i][0] = (agents[i][0] + 1) % 100
+        else:
+            agents[i][0] = (agents[i][0] - 1) % 100
+
+        if random.random() < 0.5:
+            agents[i][1] = (agents[i][1] + 1) % 100
+        else:
+            agents[i][1] = (agents[i][1] - 1) % 100
+            
 print (agents)
 
 # This max function will give the coordinates with the largest y value
