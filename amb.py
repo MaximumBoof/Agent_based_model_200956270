@@ -9,10 +9,11 @@ import random
 import operator 
 import matplotlib.pyplot
 
+def distance_between(agents_row_a, agents_row_b):
+     return (((agents_row_a[0] - agents_row_b[0])**2) + ((agents_row_a[1] - agents_row_b[1])**2))**0.5
+
 num_of_agents = 10
 number_of_iterations = 100
-
-#This creates an empty list
 agents = []
 
 # Make the agents
@@ -39,15 +40,11 @@ print(max(agents))
 # However, if we want to show the coordinates with the largest x value, we have to import operator functions
 print(max(agents, key=operator.itemgetter(1)))  
 
-# Calculate Eudclian distance between the points (Using pythagoras)
-# Define difference in y and x
-dy = agents[0][0]-agents[1][0]
-dx = agents[0][1]-agents[1][1]
+# Distance
+distance = distance_between(agents[0], agents[1])
+print(distance)
 
-# Pythogras
-distance = ((dy**2)+(dx**2))**0.5
 
-print (distance)
 
 # Using matplot to create a plot
 
