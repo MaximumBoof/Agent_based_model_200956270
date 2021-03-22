@@ -15,9 +15,8 @@ random.seed(seed)
 
 num_of_agents = 2
 num_of_iterations = 10
-agents = []
 environment = []
-
+agents = []
 
 f = open('in.txt', newline='')
 reader = csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
@@ -34,20 +33,21 @@ def distance_between(agents_row_a, agents_row_b):
 
 # Make the agents.
 for i in range(num_of_agents):
-     agents.append(agentframework.Agent())
+     agents.append(agentframework.Agent(environment))
      print("SP", agents[i].x, agents[i].y)
 
 # Move the agents.
 for j in range(num_of_iterations):
     for i in range(num_of_agents):
         agents[i].move()
+        agents[i].eat()
         print("IT", agents[i].x, agents[i].y)
         
 matplotlib.pyplot.xlim(0, 99)
 matplotlib.pyplot.ylim(0, 99)
+matplotlib.pyplot.imshow(environment)
 for i in range(num_of_agents):
     matplotlib.pyplot.scatter(agents[i].x,agents[i].y)
-    matplotlib.pyplot.imshow(environment)
 matplotlib.pyplot.show()
 
 for agents_row_a in agents:
