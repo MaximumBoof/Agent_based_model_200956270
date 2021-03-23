@@ -14,7 +14,7 @@ seed = 2
 random.seed(seed)
 
 num_of_agents = 2
-num_of_iterations = 10
+num_of_iterations = 100
 environment = []
 agents = []
 
@@ -41,7 +41,10 @@ for j in range(num_of_iterations):
     for i in range(num_of_agents):
         agents[i].move()
         agents[i].eat()
-        print("IT", agents[i].x, agents[i].y)
+        #print("IT", agents[i].x, agents[i].y)
+        
+for i in range(num_of_agents):
+    print("EP", agents[i].x, agents[i].y)
         
 matplotlib.pyplot.xlim(0, 99)
 matplotlib.pyplot.ylim(0, 99)
