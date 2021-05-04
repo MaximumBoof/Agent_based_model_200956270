@@ -61,8 +61,9 @@ def run():
     # To allow the model to be run multiple times with differing variables, without closing down the window, the agents and environment need to be cleared.
     # Otherwise, the agents will be appened with the new value, meaning there will be more agents than actually appear, so they wouldn't move correctly.
     agents.clear()
-    environment.clear()
-    import_csv()
+    #environment.clear()
+    global environment
+    environment=import_csv()
     # Gets the three user defined values from the GUI spinboxes.
     global num_of_iterations
     num_of_iterations = int(noit.get())
@@ -112,7 +113,9 @@ environment = []
 agents = []
 
 # Importing the CSV file, used to create the environment
+# returns numeric array of data to form background
 def import_csv():
+    environment_info=[]
     f = open('in.txt', newline='')
     reader = csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
 
@@ -120,7 +123,8 @@ def import_csv():
         rowlist= [] 
         for values in row:
             rowlist.append(values)
-        environment.append(rowlist)
+        environment_info.append(rowlist)
+    return environment_info
     
 carry_on = True	
 
