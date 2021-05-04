@@ -18,7 +18,6 @@ import bs4
 #------------ End of imports
 
 #------------ Defining functions
-
 # For each each frame in animation, allows the agents to move, eat and share for each iteration used within the animation.
 def update(frame_number): 
     fig.clear()
@@ -59,9 +58,11 @@ def gen_function(b = [0]):
 # Function which runs the model
 # This is called when the GUI 'run' button is pressed
 def run():
-    # To allow the model to be run multiple times with differing variables, without closing down the window, the agents need to be cleared.
+    # To allow the model to be run multiple times with differing variables, without closing down the window, the agents and environment need to be cleared.
     # Otherwise, the agents will be appened with the new value, meaning there will be more agents than actually appear, so they wouldn't move correctly.
     agents.clear()
+    environment.clear()
+    import_csv()
     # Gets the three user defined values from the GUI spinboxes.
     global num_of_iterations
     num_of_iterations = int(noit.get())
@@ -100,9 +101,7 @@ soup = bs4.BeautifulSoup(content, 'html.parser')
 td_ys = soup.find_all(attrs={"class" : "y"})
 td_xs = soup.find_all(attrs={"class" : "x"})
     
-# Creating the GUI, with a simple title
-root = tkinter.Tk() 
-root.wm_title("Model - 200956270")
+
 
 # A seed is used throughout testing to maintain consistency when testing
 seed = 1
@@ -113,16 +112,21 @@ environment = []
 agents = []
 
 # Importing the CSV file, used to create the environment
-f = open('in.txt', newline='')
-reader = csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
+def import_csv():
+    f = open('in.txt', newline='')
+    reader = csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
 
-for row in reader:
-    rowlist= [] 
-    for values in row:
-        rowlist.append(values)
-    environment.append(rowlist)
+    for row in reader:
+        rowlist= [] 
+        for values in row:
+            rowlist.append(values)
+        environment.append(rowlist)
     
 carry_on = True	
+
+# Creating the GUI, with a simple title
+root = tkinter.Tk() 
+root.wm_title("Model - 200956270")
 
 # Creates a figure and adds axes used when animating
 fig = matplotlib.pyplot.figure()
@@ -137,8 +141,8 @@ animationframe.pack(side=tkinter.RIGHT)
 # Adding number of iterations label and spinbox, on the left frame of the window
 noitlab = tkinter.Label(leftframe, text ='No. of iterations', fg="navyblue",font = "50")
 noit = tkinter.Spinbox(leftframe, from_= 1, to = 1000) 
-noitlab.grid(row=0,column=0, sticky=tkinter.W)
-noit.grid(row=1,column=0, sticky=tkinter.W)
+noitlab.grid(row=1,column=0, sticky=tkinter.W)
+noit.grid(row=2,column=0, sticky=tkinter.W)
 
 # Adding number of agents label and spinbox, on the left frame of the window
 noaglab = tkinter.Label(leftframe, text ='No. of agents', fg="navyblue",font = "50") 

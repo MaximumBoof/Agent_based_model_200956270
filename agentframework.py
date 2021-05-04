@@ -8,7 +8,7 @@ import random
 
 seed = 6
 random.seed(seed)
-
+# Creating an agent class
 class Agent ():
     def __init__ (self, environment, agents, x, y, colour):
         self.environment = environment
