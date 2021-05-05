@@ -163,11 +163,11 @@ neigh.grid(row=6,column=0,sticky=tkinter.W)
 # Adding a button to run the model, rather than the drop down menu
 # This is more intuative with the addition of spinboxes for variables
 r = tkinter.Button(leftframe, text ='Run model', fg="navyblue",font = "50", command=run)
-r.grid(row=7,column=0,sticky=tkinter.W)
+r.grid(row=7,column=0,sticky=tkinter.W, ipady=5)
 
 # Adding a button to exit the window and stop the model
 r = tkinter.Button(leftframe, text ='Exit window', fg="navyblue",font = "50", command=exiting)
-r.grid(row=8,column=0,sticky=tkinter.W)
+r.grid(row=8,column=0,sticky=tkinter.W, ipady=5)
 
 # Locating in the window where the animation will be
 canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(fig, master=animationframe)
